@@ -1,2 +1,8 @@
-# new_Game_Project
- Game_Project(2)
+Game thứ 2.
+Một vài đoạn code được copy từ game thứ nhất qua
+
+Nội dung game:
+
+Thể loại: Đua xe.
+
+- 

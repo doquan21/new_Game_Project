@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1587784866 source:d:\code big project\new_game_project\new_game_project\function.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	<string>
+	"Function.h"
+
+1587784866 d:\code big project\new_game_project\new_game_project\function.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	<string>
+
