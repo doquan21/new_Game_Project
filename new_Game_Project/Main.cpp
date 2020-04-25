@@ -3,7 +3,7 @@
 #include <SDL_image.h>
 #include <string>
 #include "Function.h"
-
+#include "Player.h"
 using namespace std;
 
 const int S_width = 300;
@@ -20,18 +20,33 @@ void quitSDL(SDL_Window* window, SDL_Renderer* renderer);
 
 int main(int argc, char* argv[])
 {
-    //bool running = true;
-
     if (initSDL() == false) return 0;
+    bool running = true;
+    SDL_Event event;
+    Player mainPlayer(125,700);
+    string nameFilePlayer = "Player.png";
 
-    SDL_Texture* tex = NULL;
-    tex = load_image("BG1.png",renderer);
-    SDL_RenderCopy(renderer , tex, NULL, NULL);
-    SDL_DestroyTexture(tex);
+    while (running == true)
+    {
 
-    SDL_RenderPresent(renderer);
+        SDL_Texture* tex = NULL;
+        tex = load_image("BG1.png",renderer);
+        SDL_RenderCopy(renderer , tex, NULL, NULL);
+        SDL_DestroyTexture(tex);
 
-    waitUntilKeyPressed();
+
+        mainPlayer.renderPlayer(renderer, nameFilePlayer );
+        mainPlayer.inside();
+        if(SDL_PollEvent(&event))
+        {
+          mainPlayer.pollEvent(event);
+        }
+
+
+        SDL_RenderPresent(renderer);
+    }
+
+
     quitSDL(window,renderer);
     return 0;
 }

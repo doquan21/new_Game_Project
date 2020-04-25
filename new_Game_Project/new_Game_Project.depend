@@ -12,3 +12,20 @@
 	<SDL_image.h>
 	<string>
 
+1587788327 source:d:\code big project\new_game_project\new_game_project\player.cpp
+	"Player.h"
+	"Function.h"
+
+1587787400 d:\code big project\new_game_project\new_game_project\player.h
+	<SDL.h>
+	<SDL_image.h>
+	<string>
+
+1587788040 source:d:\code big project\new_game_project\new_game_project\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	<string>
+	"Function.h"
+	"Player.h"
+
