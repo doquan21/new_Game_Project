@@ -22,7 +22,7 @@ struct Player{
 
     void move();
 
-    void pollEvent(SDL_Event event);
+    void pollEvent(SDL_Event event,SDL_Renderer* renderer,Player mainPlayer);
 };
 
 #endif // MAINPLAYER_H

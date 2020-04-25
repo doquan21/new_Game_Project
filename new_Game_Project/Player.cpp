@@ -25,11 +25,11 @@ void Player::move()
 
 }
 
-void Player::pollEvent(SDL_Event event)
+void Player::pollEvent(SDL_Event event,SDL_Renderer* renderer, Player mainPlayer)
 {
     switch (event.type)
     {
-        case SDL_QUIT: break;
+        case SDLK_ESCAPE: break;
         //khi ấn phím
         default :
         {

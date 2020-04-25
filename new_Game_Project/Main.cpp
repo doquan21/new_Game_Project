@@ -4,10 +4,11 @@
 #include <string>
 #include "Function.h"
 #include "Player.h"
+#include "Barrier.h"
 using namespace std;
 
-const int S_width = 300;
-const int S_height = 1000;
+const int S_width = 500;
+const int S_height = 800;
 const string title = "Test SDL game";
 
 SDL_Window* window = NULL;
@@ -20,28 +21,50 @@ void quitSDL(SDL_Window* window, SDL_Renderer* renderer);
 
 int main(int argc, char* argv[])
 {
+    //tao window, renderer
     if (initSDL() == false) return 0;
     bool running = true;
+    //
     SDL_Event event;
-    Player mainPlayer(125,700);
-    string nameFilePlayer = "Player.png";
+
+    // tao background
+    SDL_Rect background_rect;
+    background_rect.x = 0;
+    background_rect.y = -1200;
+    background_rect.h = 2000;
+    background_rect.w = 500;
+
+    // tao nhan vat
+    Player mainPlayer(125,650);
+    string nameFilePlayer = "image/Player.png";
+
+    // tao rao chan
+    Barrier barrier1(10,0);
+
+    Barrier barrier2(110,0);
 
     while (running == true)
     {
-
+        SDL_RenderClear(renderer);
+        //chay background
         SDL_Texture* tex = NULL;
-        tex = load_image("BG1.png",renderer);
-        SDL_RenderCopy(renderer , tex, NULL, NULL);
+        tex = load_image("image/BG1.png",renderer);
+        SDL_RenderCopy(renderer , tex, NULL, &background_rect);
+        background_rect.y +=5;
+        if (background_rect.y > 0) background_rect.y =-1200;
         SDL_DestroyTexture(tex);
 
-
+        //chay mainplayer
         mainPlayer.renderPlayer(renderer, nameFilePlayer );
         mainPlayer.inside();
         if(SDL_PollEvent(&event))
         {
-          mainPlayer.pollEvent(event);
+            if (event.type == SDL_QUIT) running = false;
+            mainPlayer.pollEvent(event, renderer, mainPlayer);
         }
 
+        //chay barriers
+        barrier1.renderBarrier(renderer);
 
         SDL_RenderPresent(renderer);
     }

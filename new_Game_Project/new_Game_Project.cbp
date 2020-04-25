@@ -31,6 +31,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Barrier.cpp" />
+		<Unit filename="Barrier.h" />
 		<Unit filename="Function.cpp" />
 		<Unit filename="Function.h" />
 		<Unit filename="Main.cpp" />

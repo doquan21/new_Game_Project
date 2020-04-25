@@ -5,4 +5,7 @@ Nội dung game:
 
 Thể loại: Đua xe.
 
-- 
+Đã làm được:
+- Load ảnh background
+- Load nhân vật
+- Di chuyển nhân vật
