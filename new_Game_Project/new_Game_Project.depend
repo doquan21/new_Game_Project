@@ -12,16 +12,16 @@
 	<SDL_image.h>
 	<string>
 
-1587811180 source:d:\code big project\new_game_project\new_game_project\player.cpp
+1587814583 source:d:\code big project\new_game_project\new_game_project\player.cpp
 	"Player.h"
 	"Function.h"
 
-1587810184 d:\code big project\new_game_project\new_game_project\player.h
+1587814583 d:\code big project\new_game_project\new_game_project\player.h
 	<SDL.h>
 	<SDL_image.h>
 	<string>
 
-1587813130 source:d:\code big project\new_game_project\new_game_project\main.cpp
+1587824310 source:d:\code big project\new_game_project\new_game_project\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -30,11 +30,11 @@
 	"Player.h"
 	"Barrier.h"
 
-1587813078 source:d:\code big project\new_game_project\new_game_project\barrier.cpp
+1587824942 source:d:\code big project\new_game_project\new_game_project\barrier.cpp
 	"Barrier.h"
 	"Function.h"
 
-1587813086 d:\code big project\new_game_project\new_game_project\barrier.h
+1587815589 d:\code big project\new_game_project\new_game_project\barrier.h
 	<SDL.h>
 	<SDL_image.h>
 	<string>

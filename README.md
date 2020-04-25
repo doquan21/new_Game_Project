@@ -9,3 +9,5 @@ Thể loại: Đua xe.
 - Load ảnh background
 - Load nhân vật
 - Di chuyển nhân vật
+- Tạo vật cản và di chuyển vật
+- 

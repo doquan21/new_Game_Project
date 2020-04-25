@@ -30,8 +30,8 @@ int main(int argc, char* argv[])
     // tao background
     SDL_Rect background_rect;
     background_rect.x = 0;
-    background_rect.y = -1200;
-    background_rect.h = 2000;
+    background_rect.y = -4200;
+    background_rect.h = 5000;
     background_rect.w = 500;
 
     // tao nhan vat
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
         tex = load_image("image/BG1.png",renderer);
         SDL_RenderCopy(renderer , tex, NULL, &background_rect);
         background_rect.y +=5;
-        if (background_rect.y > 0) background_rect.y =-1200;
+        if (background_rect.y > 0) background_rect.y =-4200;
         SDL_DestroyTexture(tex);
 
         //chay mainplayer
@@ -65,7 +65,10 @@ int main(int argc, char* argv[])
 
         //chay barriers
         barrier1.renderBarrier(renderer);
+        barrier1.move1();
 
+        barrier2.renderBarrier(renderer);
+        barrier2.move2();
         SDL_RenderPresent(renderer);
     }
 

@@ -20,8 +20,6 @@ struct Player{
 
     void inside();
 
-    void move();
-
     void pollEvent(SDL_Event event,SDL_Renderer* renderer,Player mainPlayer);
 };
 

@@ -10,6 +10,8 @@ struct Barrier
 {
     int x;
     int y;
+    int posNameBarrier = 0;
+    int posBarrier = 1;
     Barrier (){};
     Barrier (int _x,int _y)
     {
@@ -18,6 +20,8 @@ struct Barrier
     }
     void renderBarrier(SDL_Renderer* renderer);
 
+    void move1();
 
+    void move2();
 };
 #endif // BARRIER_H
