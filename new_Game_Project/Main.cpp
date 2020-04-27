@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <string>
 #include "Function.h"
 #include "Player.h"
@@ -17,13 +18,21 @@ SDL_Renderer* renderer = NULL;
 bool initSDL();
 
 void waitUntilKeyPressed();
-void quitSDL(SDL_Window* window, SDL_Renderer* renderer);
 
 int main(int argc, char* argv[])
 {
     //tao window, renderer
     if (initSDL() == false) return 0;
-    bool running = true;
+
+
+    //tao main menu start && chay menu start
+    SDL_Texture* tex = NULL;
+    tex = load_image("image/start.png",renderer);
+    SDL_RenderCopy(renderer , tex, NULL, NULL);
+    SDL_RenderPresent(renderer);
+    waitUntilKeyPressed();
+    SDL_DestroyTexture(tex);
+
     //
     SDL_Event event;
 
@@ -42,12 +51,17 @@ int main(int argc, char* argv[])
     Barrier barrier1(10,0);
 
     Barrier barrier2(110,0);
-    int dem=0;
+
+    // tao score
+    TTF_Font* font = TTF_OpenFont("score.ttf",20);
+
+
+    long long int countScore =0;
+    bool running = true;
+
     while (running == true)
     {
-        SDL_RenderClear(renderer);
         //chay background
-        SDL_Texture* tex = NULL;
         tex = load_image("image/BG1.png",renderer);
         SDL_RenderCopy(renderer , tex, NULL, &background_rect);
         background_rect.y +=5;
@@ -60,8 +74,13 @@ int main(int argc, char* argv[])
         if(SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT) running = false;
-            mainPlayer.pollEvent(event, renderer, mainPlayer, nameFilePlayer);
+            mainPlayer.pollEvent(event, renderer, nameFilePlayer);
         }
+
+        //in ra score
+        countScore+=10;
+        string str = to_string(countScore);
+        showScore(font, renderer,str);
 
         //chay barriers
         barrier1.renderBarrier(renderer);
@@ -72,13 +91,22 @@ int main(int argc, char* argv[])
         SDL_RenderPresent(renderer);
 
         //kiem tra va cham
-        dem++;
-        if (barrier1.checkCollision(mainPlayer) ) cout <<"yes"<<dem<<endl;
-        if (barrier2.checkCollision(mainPlayer) ) cout <<"yes"<<dem<<endl;
+
+        if (barrier1.checkCollision(mainPlayer) ) ;
+        if (barrier2.checkCollision(mainPlayer) ) ;
+
+        SDL_RenderClear(renderer);
+
     }
 
+    SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
 
-    quitSDL(window,renderer);
+    TTF_CloseFont(font);
+
+    TTF_Quit();
+	IMG_Quit();
+	SDL_Quit();
     return 0;
 }
 
@@ -104,22 +132,22 @@ bool initSDL()
         return false;
     }
 
+    if (TTF_Init() <0)
+    {
+        cout << "Error TTF init";
+        return false;
+    }
+
     return true;
 }
 
 void waitUntilKeyPressed()
 {
-    SDL_Event e;
+    SDL_Event event;
     while (true) {
-        if ( SDL_WaitEvent(&e) != 0 && (e.type == SDL_KEYDOWN || e.type == SDL_QUIT) )
+        if ( SDL_WaitEvent(&event) != 0 && (event.type == SDL_KEYDOWN || event.type == SDL_QUIT) )
             return;
-        SDL_Delay(100);
+        SDL_Delay(10);
     }
 }
-void quitSDL(SDL_Window* window, SDL_Renderer* renderer)
-{
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
 
-	SDL_Quit();
-}

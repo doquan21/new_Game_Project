@@ -19,7 +19,7 @@ struct Player{
 
     void inside();
 
-    void pollEvent(SDL_Event event,SDL_Renderer* renderer,Player mainPlayer, string &nameFilePlayer);
+    void pollEvent(SDL_Event event,SDL_Renderer* renderer, string &nameFilePlayer);
 };
 
 #endif // MAINPLAYER_H

@@ -1,36 +1,38 @@
 # depslib dependency file v1.0
-1587830905 source:d:\code big project\new_game_project\new_game_project\function.cpp
+1587964516 source:d:\code big project\new_game_project\new_game_project\function.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	<string>
 	"Function.h"
 
-1587830905 d:\code big project\new_game_project\new_game_project\function.h
+1587961815 d:\code big project\new_game_project\new_game_project\function.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_ttf.h>
 	<string>
 
-1587873553 source:d:\code big project\new_game_project\new_game_project\player.cpp
+1587960688 source:d:\code big project\new_game_project\new_game_project\player.cpp
 	"Player.h"
 	"Function.h"
 
-1587828315 d:\code big project\new_game_project\new_game_project\player.h
+1587960688 d:\code big project\new_game_project\new_game_project\player.h
 	<SDL.h>
 	<SDL_image.h>
 	<string>
 
-1587876792 source:d:\code big project\new_game_project\new_game_project\main.cpp
+1587964967 source:d:\code big project\new_game_project\new_game_project\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_ttf.h>
 	<string>
 	"Function.h"
 	"Player.h"
 	"Barrier.h"
 
-1587876792 source:d:\code big project\new_game_project\new_game_project\barrier.cpp
+1587965129 source:d:\code big project\new_game_project\new_game_project\barrier.cpp
 	"Barrier.h"
 	"Function.h"
 

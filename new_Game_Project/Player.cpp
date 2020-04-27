@@ -20,7 +20,7 @@ void Player::inside()
     if (x < 25) x=25;
     if (x > 225) x=225;
 }
-void Player::pollEvent(SDL_Event event,SDL_Renderer* renderer, Player mainPlayer, string &nameFilePlayer)
+void Player::pollEvent(SDL_Event event,SDL_Renderer* renderer, string &nameFilePlayer)
 {
     switch (event.type)
     {

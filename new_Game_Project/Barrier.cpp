@@ -21,8 +21,9 @@ void Barrier::renderBarrier(SDL_Renderer* renderer)
 void Barrier::move1()
 {
     y += 8;
-    if (posBarrier == 1)x = 10;
-    else if (posBarrier == 2) x = 210;
+    if (posBarrier == 0) x = 110;
+    else if (posBarrier == 1) x = 10;
+    else if (posBarrier == 2) x = 110;
     else x = 210;
 
     if (y > 800)
@@ -39,9 +40,10 @@ void Barrier::move1()
 void Barrier::move2()
 {
     y += 10;
-    if (posBarrier == 0) x = 10;
+    if (posBarrier == 0) x = 210;
     else if (posBarrier == 1) x = 110;
     else if (posBarrier == 2) x = 10;
+    else if (posBarrier == 3) x = 210;
     else x = 110;
 
     if (y > 800)
