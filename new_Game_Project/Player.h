@@ -5,7 +5,6 @@
 #include <SDL_image.h>
 #include <string>
 using namespace std;
-
 struct Player{
     int x;
     int y;
@@ -20,7 +19,7 @@ struct Player{
 
     void inside();
 
-    void pollEvent(SDL_Event event,SDL_Renderer* renderer,Player mainPlayer);
+    void pollEvent(SDL_Event event,SDL_Renderer* renderer,Player mainPlayer, string &nameFilePlayer);
 };
 
 #endif // MAINPLAYER_H

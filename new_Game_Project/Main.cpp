@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
     Barrier barrier1(10,0);
 
     Barrier barrier2(110,0);
-
+    int dem=0;
     while (running == true)
     {
         SDL_RenderClear(renderer);
@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
         if(SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT) running = false;
-            mainPlayer.pollEvent(event, renderer, mainPlayer);
+            mainPlayer.pollEvent(event, renderer, mainPlayer, nameFilePlayer);
         }
 
         //chay barriers
@@ -70,6 +70,11 @@ int main(int argc, char* argv[])
         barrier2.renderBarrier(renderer);
         barrier2.move2();
         SDL_RenderPresent(renderer);
+
+        //kiem tra va cham
+        dem++;
+        if (barrier1.checkCollision(mainPlayer) ) cout <<"yes"<<dem<<endl;
+        if (barrier2.checkCollision(mainPlayer) ) cout <<"yes"<<dem<<endl;
     }
 
 

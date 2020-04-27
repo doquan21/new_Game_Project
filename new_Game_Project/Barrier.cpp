@@ -53,3 +53,9 @@ void Barrier::move2()
         if (posNameBarrier ==4) posNameBarrier =0;
     }
 }
+
+bool Barrier::checkCollision(Player playerCheck)
+{
+    if ( y > 650 && y < 800 && x + 15 == playerCheck.x ) return true;
+    else return false;
+}

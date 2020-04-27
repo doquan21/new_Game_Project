@@ -1,6 +1,7 @@
 #ifndef BARRIER_H
 #define BARRIER_H
 
+#include "Player.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <string>
@@ -23,5 +24,7 @@ struct Barrier
     void move1();
 
     void move2();
+
+    bool checkCollision(Player playerCheck);
 };
 #endif // BARRIER_H

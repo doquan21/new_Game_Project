@@ -10,5 +10,6 @@ using namespace std;
 
 SDL_Texture* load_image(string file_path,SDL_Renderer* renderer);
 
+
 #endif // FUNCTION_H
 
