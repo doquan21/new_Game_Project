@@ -6,6 +6,8 @@
 #include "Function.h"
 #include "Player.h"
 #include "Barrier.h"
+#include "Health.h"
+
 using namespace std;
 
 const int S_width = 500;
@@ -53,9 +55,9 @@ int main(int argc, char* argv[])
     Barrier barrier2(110,0);
 
     // tao score
-    TTF_Font* font = TTF_OpenFont("score.ttf",20);
+    TTF_Font* font = TTF_OpenFont("score.ttf",50);
 
-
+    int healthPoint =0;
     long long int countScore =0;
     bool running = true;
 
@@ -88,12 +90,19 @@ int main(int argc, char* argv[])
 
         barrier2.renderBarrier(renderer);
         barrier2.move2();
-        SDL_RenderPresent(renderer);
+
+
 
         //kiem tra va cham
 
-        if (barrier1.checkCollision(mainPlayer) ) ;
-        if (barrier2.checkCollision(mainPlayer) ) ;
+        if (barrier1.checkCollision(mainPlayer) ) { healthPoint++; cout <<healthPoint<<endl;};
+        if (barrier2.checkCollision(mainPlayer) ) { healthPoint++; cout <<healthPoint<<endl;};
+
+        // chay health
+        createHealth(healthPoint,renderer);
+
+        SDL_RenderPresent(renderer);
+
 
         SDL_RenderClear(renderer);
 

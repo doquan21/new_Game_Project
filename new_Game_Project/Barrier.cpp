@@ -58,6 +58,7 @@ void Barrier::move2()
 
 bool Barrier::checkCollision(Player playerCheck)
 {
-    if ( y > 650 && y < 800 && x + 15 == playerCheck.x ) return true;
+    //cout << playerCheck.x<<endl;
+    if ( x + 15 == playerCheck.x && y == 600 ) return true;
     else return false;
 }

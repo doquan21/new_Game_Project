@@ -35,6 +35,8 @@
 		<Unit filename="Barrier.h" />
 		<Unit filename="Function.cpp" />
 		<Unit filename="Function.h" />
+		<Unit filename="Health.cpp" />
+		<Unit filename="Health.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />

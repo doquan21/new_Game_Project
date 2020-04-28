@@ -22,7 +22,7 @@
 	<SDL_image.h>
 	<string>
 
-1587964967 source:d:\code big project\new_game_project\new_game_project\main.cpp
+1588008622 source:d:\code big project\new_game_project\new_game_project\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -31,14 +31,21 @@
 	"Function.h"
 	"Player.h"
 	"Barrier.h"
+	"Health.h"
 
-1587965129 source:d:\code big project\new_game_project\new_game_project\barrier.cpp
+1588008622 source:d:\code big project\new_game_project\new_game_project\barrier.cpp
 	"Barrier.h"
 	"Function.h"
 
-1587874755 d:\code big project\new_game_project\new_game_project\barrier.h
+1588007311 d:\code big project\new_game_project\new_game_project\barrier.h
 	"Player.h"
 	<SDL.h>
 	<SDL_image.h>
 	<string>
+
+1588007917 source:d:\code big project\new_game_project\new_game_project\health.cpp
+	"Health.h"
+
+1588004321 d:\code big project\new_game_project\new_game_project\health.h
+	"Function.h"
 
