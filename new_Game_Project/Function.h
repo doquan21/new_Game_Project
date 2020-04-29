@@ -9,7 +9,11 @@
 
 using namespace std;
 
+void waitUntilKeyPressed();
+
 SDL_Texture* load_image(string file_path,SDL_Renderer* renderer);
+
+void startAfter3s(string file_path,SDL_Renderer* renderer);
 
 void showScore(TTF_Font* font, SDL_Renderer* render,string score);
 

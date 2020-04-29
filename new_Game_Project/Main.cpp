@@ -2,8 +2,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
-#include <string>
-#include "Function.h"
+
+
 #include "Player.h"
 #include "Barrier.h"
 #include "Health.h"
@@ -19,7 +19,6 @@ SDL_Renderer* renderer = NULL;
 
 bool initSDL();
 
-void waitUntilKeyPressed();
 
 int main(int argc, char* argv[])
 {
@@ -35,6 +34,10 @@ int main(int argc, char* argv[])
     waitUntilKeyPressed();
     SDL_DestroyTexture(tex);
 
+    //tao menu dung 3s
+    startAfter3s("image/start1.png",renderer);
+    startAfter3s("image/start2.png",renderer);
+    startAfter3s("image/start3.png",renderer);
     //
     SDL_Event event;
 
@@ -45,6 +48,7 @@ int main(int argc, char* argv[])
     background_rect.h = 5000;
     background_rect.w = 500;
 
+
     // tao nhan vat
     Player mainPlayer(125,650);
     string nameFilePlayer = "image/Player.png";
@@ -54,7 +58,7 @@ int main(int argc, char* argv[])
 
     Barrier barrier2(110,0);
 
-    // tao score
+    // tao font score
     TTF_Font* font = TTF_OpenFont("score.ttf",50);
 
     int healthPoint =0;
@@ -81,8 +85,8 @@ int main(int argc, char* argv[])
 
         //in ra score
         countScore+=10;
-        string str = to_string(countScore);
-        showScore(font, renderer,str);
+        string str = to_string(countScore); //cast int to string
+        showScore(font, renderer,str); //trong header Function.h
 
         //chay barriers
         barrier1.renderBarrier(renderer);
@@ -99,7 +103,7 @@ int main(int argc, char* argv[])
         if (barrier2.checkCollision(mainPlayer) ) { healthPoint++; cout <<healthPoint<<endl;};
 
         // chay health
-        createHealth(healthPoint,renderer);
+        createHealth(healthPoint,renderer); //trong header health.h
 
         SDL_RenderPresent(renderer);
 
@@ -148,15 +152,5 @@ bool initSDL()
     }
 
     return true;
-}
-
-void waitUntilKeyPressed()
-{
-    SDL_Event event;
-    while (true) {
-        if ( SDL_WaitEvent(&event) != 0 && (event.type == SDL_KEYDOWN || event.type == SDL_QUIT) )
-            return;
-        SDL_Delay(10);
-    }
 }
 

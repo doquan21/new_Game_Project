@@ -10,4 +10,6 @@ Thể loại: Đua xe.
 - Load nhân vật
 - Di chuyển nhân vật
 - Tạo vật cản và di chuyển vật
+- Thêm health và thuật toán mất máu nếu va chạm
+- chờ 3s để start
 - 
