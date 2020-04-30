@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1588050005 source:d:\code big project\new_game_project\new_game_project\barrier.cpp
+1588176760 source:d:\code big project\new_game_project\new_game_project\barrier.cpp
 	"Barrier.h"
 	"Function.h"
 
@@ -14,14 +14,14 @@
 	<SDL_image.h>
 	<string>
 
-1588133625 d:\code big project\new_game_project\new_game_project\function.h
+1588176270 d:\code big project\new_game_project\new_game_project\function.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
 	<string>
 
-1588133075 source:d:\code big project\new_game_project\new_game_project\function.cpp
+1588176250 source:d:\code big project\new_game_project\new_game_project\function.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -34,7 +34,7 @@
 1588004321 d:\code big project\new_game_project\new_game_project\health.h
 	"Function.h"
 
-1588133347 source:d:\code big project\new_game_project\new_game_project\main.cpp
+1588264260 source:d:\code big project\new_game_project\new_game_project\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>

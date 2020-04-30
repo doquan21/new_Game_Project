@@ -29,13 +29,12 @@ SDL_Texture* load_image(string file_path,SDL_Renderer* renderer)
     }
     return tex;
 }
-void startAfter3s(string file_path,SDL_Renderer* renderer)
+void render_image(string file_path,SDL_Renderer* renderer)
 {
     SDL_Texture* tex = NULL;
     tex = load_image(file_path.c_str() ,renderer);
     SDL_RenderCopy(renderer , tex, NULL, NULL);
     SDL_RenderPresent(renderer);
-    SDL_Delay(1000);
     SDL_DestroyTexture(tex);
 
 }
