@@ -1,7 +1,3 @@
-#include <iostream>
-#include <SDL.h>
-#include <SDL_image.h>
-#include <string>
 #include "Function.h"
 
 using namespace std;
@@ -10,7 +6,7 @@ void waitUntilKeyPressed()
 {
     SDL_Event event;
     while (true) {
-        if ( SDL_WaitEvent(&event) != 0 && (event.type == SDL_KEYDOWN || event.type == SDL_QUIT) )
+        if ( SDL_WaitEvent(&event) != 0 && ((event.type == SDL_KEYDOWN) ||(event.type == SDL_QUIT)) )
             return;
         SDL_Delay(10);
     }
@@ -62,8 +58,10 @@ void showScore(TTF_Font* font, SDL_Renderer* render,string score)
     surfScore = TTF_RenderText_Solid(font, "Health :", color);
     tex = SDL_CreateTextureFromSurface(render,surfScore);
     SDL_RenderCopy(render,tex,NULL,&healthbar_rect);
+    SDL_FreeSurface(surfScore);
+    SDL_DestroyTexture(tex);
 
-
+    //render Score
     SDL_Rect score_rect;
     score_rect.x = 430;
     score_rect.y = 75;

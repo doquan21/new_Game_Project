@@ -2,9 +2,8 @@
 #define BARRIER_H
 
 #include "Player.h"
-#include <SDL.h>
-#include <SDL_image.h>
-#include <string>
+#include "Function.h"
+
 using namespace std;
 
 struct Barrier

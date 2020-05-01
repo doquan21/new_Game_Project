@@ -1,4 +1,4 @@
-#ifndef HEALTH
+#ifndef HEALTH_H
 #define HEALTH_H
 
 #include "Function.h"

@@ -1,9 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <SDL.h>
-#include <SDL_image.h>
-#include <string>
+#include "Function.h"
+
 using namespace std;
 struct Player{
     int x;

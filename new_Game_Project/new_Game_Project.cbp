@@ -35,11 +35,13 @@
 		<Unit filename="Barrier.h" />
 		<Unit filename="Function.cpp" />
 		<Unit filename="Function.h" />
+		<Unit filename="Game.cpp" />
 		<Unit filename="Health.cpp" />
 		<Unit filename="Health.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />
+		<Unit filename="game.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

@@ -1,18 +1,13 @@
 # depslib dependency file v1.0
-1588176760 source:d:\code big project\new_game_project\new_game_project\barrier.cpp
+1588265451 source:d:\code big project\new_game_project\new_game_project\barrier.cpp
 	"Barrier.h"
+
+1588265451 d:\code big project\new_game_project\new_game_project\barrier.h
+	"Player.h"
 	"Function.h"
 
-1588007311 d:\code big project\new_game_project\new_game_project\barrier.h
-	"Player.h"
-	<SDL.h>
-	<SDL_image.h>
-	<string>
-
-1587960688 d:\code big project\new_game_project\new_game_project\player.h
-	<SDL.h>
-	<SDL_image.h>
-	<string>
+1588265470 d:\code big project\new_game_project\new_game_project\player.h
+	"Function.h"
 
 1588176270 d:\code big project\new_game_project\new_game_project\function.h
 	<iostream>
@@ -21,29 +16,27 @@
 	<SDL_ttf.h>
 	<string>
 
-1588176250 source:d:\code big project\new_game_project\new_game_project\function.cpp
-	<iostream>
-	<SDL.h>
-	<SDL_image.h>
-	<string>
+1588269251 source:d:\code big project\new_game_project\new_game_project\function.cpp
 	"Function.h"
 
 1588007917 source:d:\code big project\new_game_project\new_game_project\health.cpp
 	"Health.h"
 
-1588004321 d:\code big project\new_game_project\new_game_project\health.h
+1588265301 d:\code big project\new_game_project\new_game_project\health.h
 	"Function.h"
 
-1588264260 source:d:\code big project\new_game_project\new_game_project\main.cpp
-	<iostream>
-	<SDL.h>
-	<SDL_image.h>
-	<SDL_ttf.h>
+1588271158 source:d:\code big project\new_game_project\new_game_project\main.cpp
+	"Game.h"
+
+1588265432 source:d:\code big project\new_game_project\new_game_project\player.cpp
+	"Player.h"
+
+1588272872 source:d:\code big project\new_game_project\new_game_project\game.cpp
+	"Game.h"
+
+1588270987 d:\code big project\new_game_project\new_game_project\game.h
+	"Function.h"
 	"Player.h"
 	"Barrier.h"
 	"Health.h"
-
-1587960688 source:d:\code big project\new_game_project\new_game_project\player.cpp
-	"Player.h"
-	"Function.h"
 
