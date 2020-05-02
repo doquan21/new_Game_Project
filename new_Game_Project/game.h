@@ -5,8 +5,9 @@
 #include "Player.h"
 #include "Barrier.h"
 #include "Health.h"
-
-void game(SDL_Renderer* renderer);
+#include <vector>
+#include <algorithm>
+void game(SDL_Renderer* renderer, vector<int> &highscore);
 
 
 #endif // GAME_H

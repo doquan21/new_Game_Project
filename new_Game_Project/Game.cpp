@@ -1,6 +1,6 @@
 #include "Game.h"
 
-void game(SDL_Renderer* renderer)
+void game(SDL_Renderer* renderer, vector<int> &highscore)
 {
     //tao main menu start && chay menu start
     render_image("image/start.png",renderer); // trong header Function.h
@@ -39,10 +39,10 @@ void game(SDL_Renderer* renderer)
     Barrier barrier2(110,0);
 
     // tao font score
-    TTF_Font* font = TTF_OpenFont("score.ttf",50);
+    TTF_Font* font = TTF_OpenFont("Roboto.ttf",50);
 
     int healthPoint =0;
-    long long int countScore =0, highestScore =0;
+    int countScore =0;
     bool running = true;
 
     while (running == true)
@@ -51,7 +51,10 @@ void game(SDL_Renderer* renderer)
         //chay background
         tex = load_image("image/BG1.png",renderer);
         SDL_RenderCopy(renderer , tex, NULL, &background_rect);
-        background_rect.y +=5;
+        //chinh toc do background
+        if (countScore < 10000) background_rect.y +=5;
+        else background_rect.y +=10;
+
         if (background_rect.y > 0) background_rect.y =-4200;
         SDL_DestroyTexture(tex);
 
@@ -67,40 +70,54 @@ void game(SDL_Renderer* renderer)
         //in ra score
         countScore+=10;
         string str = to_string(countScore); //cast int to string
-        showScore(font, renderer,str); //trong header Function.h
+        showScore(font, renderer,str, highscore.back()); //trong header Function.h
 
         //chay barriers
         barrier1.renderBarrier(renderer);
-        barrier1.move1();
+        barrier1.move1(countScore);
 
         barrier2.renderBarrier(renderer);
-        barrier2.move2();
+        barrier2.move2(countScore);
 
         //kiem tra va cham
 
-        if (barrier1.checkCollision(mainPlayer) ) { healthPoint++; cout <<healthPoint<<endl;};
-        if (barrier2.checkCollision(mainPlayer) ) { healthPoint++; cout <<healthPoint<<endl;};
+        if (barrier1.checkCollision(mainPlayer) ) healthPoint++;
+        if (barrier2.checkCollision(mainPlayer) ) healthPoint++;
 
         // chay health
         if (healthPoint ==4)
         {
             running = false;
-            highestScore =countScore;
         }
         else createHealth(healthPoint,renderer); //trong header health.h
 
         SDL_RenderPresent(renderer);
 
         SDL_RenderClear(renderer);
-        if (healthPoint ==3)
-        {
-            running = false;
-            highestScore =countScore;
-        }
     }
-    cout << highestScore;
-    //SDL_Delay(1000);
+    SDL_Delay(200);
+    highscore.push_back(countScore);
+    // sap xep vector de in highestscore
+    sort(highscore.begin(), highscore.end());
+
+    //render gameover menu
     render_image("image/gameover.png",renderer); // trong header Function.h
+
+    SDL_Color color = {255,50,147,225};
+    SDL_Rect highest_rect1;
+    highest_rect1.x = 320;
+    highest_rect1.y = 503;
+    highest_rect1.w = 110;
+    highest_rect1.h = 40;
+    string highestScore = to_string(highscore.back());
+    SDL_Surface* surfScore = TTF_RenderText_Solid(font,highestScore.c_str(), color);
+    SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer,surfScore);
+    SDL_RenderCopy(renderer,tex,NULL,&highest_rect1);
+    SDL_FreeSurface(surfScore);
+    SDL_DestroyTexture(tex);
+    SDL_RenderPresent(renderer);
+
+
 
     TTF_CloseFont(font);
 

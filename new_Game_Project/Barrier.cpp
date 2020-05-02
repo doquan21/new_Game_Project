@@ -18,9 +18,10 @@ void Barrier::renderBarrier(SDL_Renderer* renderer)
     SDL_DestroyTexture(block);
 }
 
-void Barrier::move1()
+void Barrier::move1(int countScore)
 {
-    y += 8;
+    if (countScore < 10000) y += 10;
+    else y += 16;
     if (posBarrier == 0) x = 110;
     else if (posBarrier == 1) x = 10;
     else if (posBarrier == 2) x = 110;
@@ -37,9 +38,10 @@ void Barrier::move1()
 
 }
 
-void Barrier::move2()
+void Barrier::move2(int countScore)
 {
-    y += 10;
+    if (countScore < 10000) y += 8;
+    else y += 20;
     if (posBarrier == 0) x = 210;
     else if (posBarrier == 1) x = 110;
     else if (posBarrier == 2) x = 10;
@@ -59,6 +61,6 @@ void Barrier::move2()
 bool Barrier::checkCollision(Player playerCheck)
 {
     //cout << playerCheck.x<<endl;
-    if ( x + 15 == playerCheck.x && y == 600 ) return true;
+    if ( x + 15 == playerCheck.x && y == 640 ) return true;
     else return false;
 }

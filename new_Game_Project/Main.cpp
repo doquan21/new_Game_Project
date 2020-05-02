@@ -16,21 +16,23 @@ int main(int argc, char* argv[])
     if (initSDL() == false) return 0;
 
     bool is_run=true, playAgain = true;
+    vector <int> highscore;
+    highscore.push_back(0);
 
-
-    while(is_run == true){
-
-    game(renderer);
-
-    while (playAgain)
+    while(is_run == true)
     {
-        if ( SDL_PollEvent(&event) == 0 )
+        game(renderer,highscore);
+        playAgain = true;
+
+        while (playAgain == true)
         {
-            if (event.type == SDL_QUIT) {is_run = false; playAgain = false;}
-            if (event.type == SDL_KEYDOWN) playAgain = false;
+            if ( SDL_WaitEvent(&event) != 0 )
+            {
+                if (event.type == SDL_QUIT) {is_run = false; playAgain = false;}
+                if (event.type == SDL_KEYDOWN) playAgain = false;
+            }
         }
-        SDL_Delay(10);
-    }
+
     }
 
 

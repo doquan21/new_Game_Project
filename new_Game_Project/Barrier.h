@@ -12,6 +12,7 @@ struct Barrier
     int y;
     int posNameBarrier = 0;
     int posBarrier = 1;
+    int speed1 =8, speed2 = 10;
     Barrier (){};
     Barrier (int _x,int _y)
     {
@@ -20,9 +21,9 @@ struct Barrier
     }
     void renderBarrier(SDL_Renderer* renderer);
 
-    void move1();
+    void move1(int countScore);
 
-    void move2();
+    void move2(int countScore);
 
     bool checkCollision(Player playerCheck);
 };

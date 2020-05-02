@@ -34,7 +34,7 @@ void render_image(string file_path,SDL_Renderer* renderer)
     SDL_DestroyTexture(tex);
 
 }
-void showScore(TTF_Font* font, SDL_Renderer* render,string score)
+void showScore(TTF_Font* font, SDL_Renderer* render,string score, long long int highestScore)
 {
     //render "Score :"
     SDL_Color color = {0,0,0,225};
@@ -58,6 +58,21 @@ void showScore(TTF_Font* font, SDL_Renderer* render,string score)
     surfScore = TTF_RenderText_Solid(font, "Health :", color);
     tex = SDL_CreateTextureFromSurface(render,surfScore);
     SDL_RenderCopy(render,tex,NULL,&healthbar_rect);
+    SDL_FreeSurface(surfScore);
+    SDL_DestroyTexture(tex);
+
+    //render Highest score
+    SDL_Rect highScoreBar_rect;
+    highScoreBar_rect.x = 310;
+    highScoreBar_rect.y = 240;
+    highScoreBar_rect.w = 180;
+    highScoreBar_rect.h = 40;
+    string highScore = to_string(highestScore);
+    string temp ="Highest :";
+    string showHighestScore = temp +highScore;
+    surfScore = TTF_RenderText_Solid(font,showHighestScore.c_str() , color);
+    tex = SDL_CreateTextureFromSurface(render,surfScore);
+    SDL_RenderCopy(render,tex,NULL,&highScoreBar_rect);
     SDL_FreeSurface(surfScore);
     SDL_DestroyTexture(tex);
 
