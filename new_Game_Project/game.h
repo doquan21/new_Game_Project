@@ -7,7 +7,7 @@
 #include "Health.h"
 #include <vector>
 #include <algorithm>
-void game(SDL_Renderer* renderer, vector<int> &highscore);
+void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG);
 
 
 #endif // GAME_H

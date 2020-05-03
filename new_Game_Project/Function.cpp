@@ -9,6 +9,7 @@ void waitUntilKeyPressed()
         if ( SDL_WaitEvent(&event) != 0 && ((event.type == SDL_KEYDOWN) ||(event.type == SDL_QUIT)) )
             return;
         SDL_Delay(10);
+
     }
 }
 

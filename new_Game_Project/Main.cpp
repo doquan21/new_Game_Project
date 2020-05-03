@@ -18,10 +18,11 @@ int main(int argc, char* argv[])
     bool is_run=true, playAgain = true;
     vector <int> highscore;
     highscore.push_back(0);
+    int tempNameBG =0;
 
     while(is_run == true)
     {
-        game(renderer,highscore);
+        game(renderer,highscore,tempNameBG);
         playAgain = true;
 
         while (playAgain == true)
@@ -32,7 +33,7 @@ int main(int argc, char* argv[])
                 if (event.type == SDL_KEYDOWN) playAgain = false;
             }
         }
-
+        tempNameBG++;
     }
 
 

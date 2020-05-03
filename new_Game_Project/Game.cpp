@@ -1,6 +1,6 @@
 #include "Game.h"
 
-void game(SDL_Renderer* renderer, vector<int> &highscore)
+void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
 {
     //tao main menu start && chay menu start
     render_image("image/start.png",renderer); // trong header Function.h
@@ -11,12 +11,22 @@ void game(SDL_Renderer* renderer, vector<int> &highscore)
     waitUntilKeyPressed();
 
     //tao menu dung 3s
-    render_image("image/start1.png",renderer);
-    SDL_Delay(1000);
-    render_image("image/start2.png",renderer);
-    SDL_Delay(1000);
-    render_image("image/start3.png",renderer);
-    SDL_Delay(1000);
+    if (tempNameBG%2 ==0){
+        render_image("image/start1.png",renderer);
+        SDL_Delay(1000);
+        render_image("image/start2.png",renderer);
+        SDL_Delay(1000);
+        render_image("image/start3.png",renderer);
+        SDL_Delay(1000);
+    }
+    else{
+        render_image("image/start4.png",renderer);
+        SDL_Delay(1000);
+        render_image("image/start5.png",renderer);
+        SDL_Delay(1000);
+        render_image("image/start6.png",renderer);
+        SDL_Delay(1000);
+    }
 
     //tao event
     SDL_Event event;
@@ -49,8 +59,10 @@ void game(SDL_Renderer* renderer, vector<int> &highscore)
     {
         SDL_Texture* tex = NULL;
         //chay background
-        tex = load_image("image/BG1.png",renderer);
+        if (tempNameBG%2==0) tex = load_image("image/BG1.png",renderer);
+        else tex = load_image("image/BG2.jpg",renderer);
         SDL_RenderCopy(renderer , tex, NULL, &background_rect);
+
         //chinh toc do background
         if (countScore < 10000) background_rect.y +=5;
         else background_rect.y +=10;

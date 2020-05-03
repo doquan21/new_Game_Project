@@ -21,7 +21,7 @@ void Barrier::renderBarrier(SDL_Renderer* renderer)
 void Barrier::move1(int countScore)
 {
     if (countScore < 10000) y += 10;
-    else y += 16;
+    else y += 20;
     if (posBarrier == 0) x = 110;
     else if (posBarrier == 1) x = 10;
     else if (posBarrier == 2) x = 110;
@@ -41,7 +41,7 @@ void Barrier::move1(int countScore)
 void Barrier::move2(int countScore)
 {
     if (countScore < 10000) y += 8;
-    else y += 20;
+    else y += 16;
     if (posBarrier == 0) x = 210;
     else if (posBarrier == 1) x = 110;
     else if (posBarrier == 2) x = 10;
