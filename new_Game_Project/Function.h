@@ -6,7 +6,7 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <string>
-
+#include <SDl_mixer.h>
 using namespace std;
 
 void waitUntilKeyPressed();

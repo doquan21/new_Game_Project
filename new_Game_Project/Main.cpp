@@ -41,6 +41,7 @@ int main(int argc, char* argv[])
     SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 
+    Mix_Quit();
     TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
@@ -72,6 +73,11 @@ bool initSDL()
     if (TTF_Init() <0)
     {
         cout << "Error TTF init";
+        return false;
+    }
+    if (Mix_OpenAudio(48000,MIX_DEFAULT_FORMAT,2,4096) < 0)
+    {
+        cout << "Error Create audio";
         return false;
     }
 

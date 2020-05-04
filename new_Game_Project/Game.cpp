@@ -28,9 +28,11 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
         SDL_Delay(1000);
     }
 
-    //tao event
+    //tao cac bien
     SDL_Event event;
-
+    Mix_Chunk *sound_effect = Mix_LoadWAV("music/Car Crash.mp3");
+    Mix_Music *bg_music = Mix_LoadMUS("music/BGmusic.mp3");
+    Mix_PlayMusic(bg_music,-1);
 
     // tao background
     SDL_Rect background_rect;
@@ -93,8 +95,8 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
 
         //kiem tra va cham
 
-        if (barrier1.checkCollision(mainPlayer) ) healthPoint++;
-        if (barrier2.checkCollision(mainPlayer) ) healthPoint++;
+        if (barrier1.checkCollision(mainPlayer) ) {healthPoint++; Mix_PlayChannel(-1,sound_effect,0);}
+        if (barrier2.checkCollision(mainPlayer) ) {healthPoint++; Mix_PlayChannel(-1,sound_effect,0);}
 
         // chay health
         if (healthPoint ==4)
@@ -129,6 +131,9 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
     SDL_DestroyTexture(tex);
     SDL_RenderPresent(renderer);
 
+    Mix_HaltMusic();
+    Mix_FreeChunk(sound_effect);
+    Mix_FreeMusic(bg_music);
 
 
     TTF_CloseFont(font);
