@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// line 6-> 15 copy code from lecture note
 void waitUntilKeyPressed()
 {
     SDL_Event event;
@@ -26,6 +27,7 @@ SDL_Texture* load_image(string file_path,SDL_Renderer* renderer)
     }
     return tex;
 }
+
 void render_image(string file_path,SDL_Renderer* renderer)
 {
     SDL_Texture* tex = NULL;
@@ -35,15 +37,13 @@ void render_image(string file_path,SDL_Renderer* renderer)
     SDL_DestroyTexture(tex);
 
 }
+
 void showScore(TTF_Font* font, SDL_Renderer* render,string score, long long int highestScore)
 {
     //render "Score :"
     SDL_Color color = {0,0,0,225};
-    SDL_Rect scorebar_rect;
-    scorebar_rect.x = 310;
-    scorebar_rect.y = 75;
-    scorebar_rect.w = 115;
-    scorebar_rect.h = 40;
+    SDL_Rect scorebar_rect = {310,75,115,40};
+
     SDL_Surface* surfScore = TTF_RenderText_Solid(font, "Score :", color);
     SDL_Texture* tex = SDL_CreateTextureFromSurface(render,surfScore);
     SDL_RenderCopy(render,tex,NULL,&scorebar_rect);
@@ -51,11 +51,8 @@ void showScore(TTF_Font* font, SDL_Renderer* render,string score, long long int 
     SDL_DestroyTexture(tex);
 
     //render Highest score
-    SDL_Rect highScoreBar_rect;
-    highScoreBar_rect.x = 310;
-    highScoreBar_rect.y = 240;
-    highScoreBar_rect.w = 180;
-    highScoreBar_rect.h = 40;
+    SDL_Rect highScoreBar_rect ={310,240,180,40};
+
     string highScore = to_string(highestScore);
     string temp ="Highest :";
     string showHighestScore = temp +highScore;
@@ -66,11 +63,7 @@ void showScore(TTF_Font* font, SDL_Renderer* render,string score, long long int 
     SDL_DestroyTexture(tex);
 
     //render Score
-    SDL_Rect score_rect;
-    score_rect.x = 430;
-    score_rect.y = 75;
-    score_rect.w = 60;
-    score_rect.h = 40;
+    SDL_Rect score_rect = {430,75,60,40};
 
     surfScore = TTF_RenderText_Solid(font, score.c_str(), color);
     tex = SDL_CreateTextureFromSurface(render,surfScore);
