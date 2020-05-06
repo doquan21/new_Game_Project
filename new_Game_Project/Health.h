@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void createHealth(int healthPoint, SDL_Renderer* renderer);
+void createHealth(TTF_Font* font, int healthPoint, SDL_Renderer* renderer);
 #endif
 
 

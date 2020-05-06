@@ -50,18 +50,6 @@ void showScore(TTF_Font* font, SDL_Renderer* render,string score, long long int 
     SDL_FreeSurface(surfScore);
     SDL_DestroyTexture(tex);
 
-    //render "Health"
-    SDL_Rect healthbar_rect;
-    healthbar_rect.x = 310;
-    healthbar_rect.y = 540;
-    healthbar_rect.w = 130;
-    healthbar_rect.h = 40;
-    surfScore = TTF_RenderText_Solid(font, "Health :", color);
-    tex = SDL_CreateTextureFromSurface(render,surfScore);
-    SDL_RenderCopy(render,tex,NULL,&healthbar_rect);
-    SDL_FreeSurface(surfScore);
-    SDL_DestroyTexture(tex);
-
     //render Highest score
     SDL_Rect highScoreBar_rect;
     highScoreBar_rect.x = 310;

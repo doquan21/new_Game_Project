@@ -30,7 +30,8 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
 
     //tao cac bien
     SDL_Event event;
-    Mix_Chunk *sound_effect = Mix_LoadWAV("music/Car Crash.mp3");
+    Mix_Chunk *crash_sound_effect = Mix_LoadWAV("music/Car Crash.mp3");
+    Mix_Chunk *speedup_sound_effect = Mix_LoadWAV("music/Speedup.mp3");
     Mix_Music *bg_music = Mix_LoadMUS("music/BGmusic.mp3");
     Mix_PlayMusic(bg_music,-1);
 
@@ -66,6 +67,7 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
         SDL_RenderCopy(renderer , tex, NULL, &background_rect);
 
         //chinh toc do background
+        if (countScore == 10000) Mix_PlayChannel(-1,speedup_sound_effect,0);
         if (countScore < 10000) background_rect.y +=5;
         else background_rect.y +=10;
 
@@ -95,20 +97,20 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
 
         //kiem tra va cham
 
-        if (barrier1.checkCollision(mainPlayer) ) {healthPoint++; Mix_PlayChannel(-1,sound_effect,0);}
-        if (barrier2.checkCollision(mainPlayer) ) {healthPoint++; Mix_PlayChannel(-1,sound_effect,0);}
+        if (barrier1.checkCollision(mainPlayer) ) {healthPoint++; Mix_PlayChannel(-1,crash_sound_effect,0);}
+        if (barrier2.checkCollision(mainPlayer) ) {healthPoint++; Mix_PlayChannel(-1,crash_sound_effect,0);}
 
         // chay health
         if (healthPoint ==4)
         {
             running = false;
         }
-        else createHealth(healthPoint,renderer); //trong header health.h
+        else createHealth(font,healthPoint,renderer); //trong header health.h
 
         SDL_RenderPresent(renderer);
-
         SDL_RenderClear(renderer);
     }
+    Mix_VolumeChunk(speedup_sound_effect,0);
     SDL_Delay(200);
     highscore.push_back(countScore);
     // sap xep vector de in highestscore
@@ -116,7 +118,7 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
 
     //render gameover menu
     render_image("image/gameover.png",renderer); // trong header Function.h
-
+    //render highest score:
     SDL_Color color = {255,50,147,225};
     SDL_Rect highest_rect1;
     highest_rect1.x = 320;
@@ -132,7 +134,8 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
     SDL_RenderPresent(renderer);
 
     Mix_HaltMusic();
-    Mix_FreeChunk(sound_effect);
+    Mix_FreeChunk(crash_sound_effect);
+    Mix_FreeChunk(speedup_sound_effect);
     Mix_FreeMusic(bg_music);
 
 

@@ -12,4 +12,4 @@ Thể loại: Đua xe.
 - Tạo vật cản và di chuyển vật
 - Thêm health và thuật toán mất máu nếu va chạm
 - chờ 3s để start
-- 
+- thêm background music và âm thanh va chạm
