@@ -2,29 +2,38 @@
 
 void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
 {
+    SDL_Rect fullscreen_rect = {0,0,500,800};
     //tao main menu start && chay menu start
-    render_image("image/start.png",renderer); // trong header Function.h
+    render_image("image/start.png",renderer,fullscreen_rect); // trong header Function.h
+    SDL_RenderPresent(renderer);
     waitUntilKeyPressed();
 
     //tao man hinh howtoplay
-    render_image("image/howtoplay.png",renderer); // trong header Function.h
+    render_image("image/howtoplay.png",renderer,fullscreen_rect); // trong header Function.h
+    SDL_RenderPresent(renderer);
     waitUntilKeyPressed();
 
     //tao menu dung 3s
     if (tempNameBG%2 ==0){
-        render_image("image/start1.png",renderer);
+        render_image("image/start1.png",renderer,fullscreen_rect);
+        SDL_RenderPresent(renderer);
         SDL_Delay(1000);
-        render_image("image/start2.png",renderer);
+        render_image("image/start2.png",renderer,fullscreen_rect);
+        SDL_RenderPresent(renderer);
         SDL_Delay(1000);
-        render_image("image/start3.png",renderer);
+        render_image("image/start3.png",renderer,fullscreen_rect);
+        SDL_RenderPresent(renderer);
         SDL_Delay(1000);
     }
     else{
-        render_image("image/start4.png",renderer);
+        render_image("image/start4.png",renderer,fullscreen_rect);
+        SDL_RenderPresent(renderer);
         SDL_Delay(1000);
-        render_image("image/start5.png",renderer);
+        render_image("image/start5.png",renderer,fullscreen_rect);
+        SDL_RenderPresent(renderer);
         SDL_Delay(1000);
-        render_image("image/start6.png",renderer);
+        render_image("image/start6.png",renderer,fullscreen_rect);
+        SDL_RenderPresent(renderer);
         SDL_Delay(1000);
     }
 
@@ -60,24 +69,28 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
 
     int healthPoint =0;
     int countScore =0;
+    int count_rain_animation =0;
     bool running = true;
+    bool checkspeedup =true;
+    string rain_animation[4] = {"image/rain1.png","image/rain2.png","image/rain3.png","image/rain4.png"};
+    int temp_rain_animation=0;
 
     while (running)
-    {
-        SDL_Texture* tex = NULL;
-        int random = rand()%3;
+    {   int random = rand()%3;
         //chay background
-        if (tempNameBG%2==0) tex = load_image("image/BG1.png",renderer);
-        else tex = load_image("image/BG2.jpg",renderer);
-        SDL_RenderCopy(renderer , tex, NULL, &background_rect);
+        if (tempNameBG%2==0) render_image("image/BG1.png",renderer,background_rect);
+        else render_image("image/BG2.jpg",renderer,background_rect);
+
+        //khi diem > 20000 thi nhac chay effect speedup
+        if (countScore > 20000){
+                if (checkspeedup) {Mix_PlayChannel(-1,speedup_sound_effect,0);checkspeedup= false ;}
+            }
 
         //chinh toc do background
-        if (countScore == 20000) Mix_PlayChannel(-1,speedup_sound_effect,0);
         if (countScore < 20000) background_rect.y +=5;
         else background_rect.y +=10;
 
         if (background_rect.y > 0) background_rect.y =-3200;
-        SDL_DestroyTexture(tex);
 
         //chay mainplayer
         mainPlayer.renderPlayer(renderer, nameFilePlayer );
@@ -89,9 +102,7 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
         }
 
         //chay coin
-        tex = load_image("image/coin.png" ,renderer);
-        SDL_RenderCopy(renderer , tex, NULL, &coin_rect);
-        SDL_DestroyTexture(tex);
+        render_image("image/coin.png",renderer,coin_rect);
         if (running)
         {
             if (coin_rect.y ==-100)
@@ -124,8 +135,16 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
         barrier2.renderBarrier(renderer);
         barrier2.move2(countScore);
 
-        //kiem tra va cham
+        // chay rain animation
+        if (countScore > 10000 && countScore < 30000)
+        {
+        count_rain_animation++;
+        if (count_rain_animation % 30 ==0) temp_rain_animation++;
+        if (temp_rain_animation ==4) temp_rain_animation=0;
+        render_image(rain_animation[temp_rain_animation],renderer,fullscreen_rect);
+        }
 
+        //kiem tra va cham
         if (barrier1.checkCollision(mainPlayer) ) {healthPoint++; Mix_PlayChannel(-1,crash_sound_effect,0);}
         if (barrier2.checkCollision(mainPlayer) ) {healthPoint++; Mix_PlayChannel(-1,crash_sound_effect,0);}
 
@@ -147,7 +166,7 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
     sort(highscore.begin(), highscore.end());
 
     //render gameover menu
-    render_image("image/gameover.png",renderer); // trong header Function.h
+    render_image("image/gameover.png",renderer,fullscreen_rect); // trong header Function.h
     //render highest score:
     SDL_Color color = {255,50,147,225};
     SDL_Rect highest_rect1 = {320,503,110,40};

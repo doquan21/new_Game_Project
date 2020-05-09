@@ -17,7 +17,5 @@ void createHealth(TTF_Font* font, int healthPoint, SDL_Renderer* renderer)
     string nameHealth[4] = {"image/health1.png" , "image/health2.png" ,"image/health3.png" ,"image/health4.png" };
 
     SDL_Rect health_rect = {303,600,190,38};
-    tex = load_image(nameHealth[healthPoint], renderer);
-    SDL_RenderCopy(renderer,tex,NULL,&health_rect);
-    SDL_DestroyTexture(tex);
+    render_image(nameHealth[healthPoint],renderer,health_rect);
 }

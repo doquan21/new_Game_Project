@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1588780245 source:d:\code big project\new_game_project\new_game_project\barrier.cpp
+1589015113 source:d:\code big project\new_game_project\new_game_project\barrier.cpp
 	"Barrier.h"
 
 1588435868 d:\code big project\new_game_project\new_game_project\barrier.h
@@ -9,7 +9,7 @@
 1588610556 d:\code big project\new_game_project\new_game_project\player.h
 	"Function.h"
 
-1588763259 d:\code big project\new_game_project\new_game_project\function.h
+1588870513 d:\code big project\new_game_project\new_game_project\function.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -17,25 +17,25 @@
 	<string>
 	<SDl_mixer.h>
 
-1588763259 source:d:\code big project\new_game_project\new_game_project\function.cpp
+1589015806 source:d:\code big project\new_game_project\new_game_project\function.cpp
 	"Function.h"
 
-1588762773 source:d:\code big project\new_game_project\new_game_project\health.cpp
+1589015482 source:d:\code big project\new_game_project\new_game_project\health.cpp
 	"Health.h"
 
 1588740596 d:\code big project\new_game_project\new_game_project\health.h
 	"Function.h"
 
-1588569697 source:d:\code big project\new_game_project\new_game_project\main.cpp
+1589015765 source:d:\code big project\new_game_project\new_game_project\main.cpp
 	"Game.h"
 
-1588610541 source:d:\code big project\new_game_project\new_game_project\player.cpp
+1589015113 source:d:\code big project\new_game_project\new_game_project\player.cpp
 	"Player.h"
 
-1588780555 source:d:\code big project\new_game_project\new_game_project\game.cpp
+1589033966 source:d:\code big project\new_game_project\new_game_project\game.cpp
 	"Game.h"
 
-1588449568 d:\code big project\new_game_project\new_game_project\game.h
+1588870649 d:\code big project\new_game_project\new_game_project\game.h
 	"Function.h"
 	"Player.h"
 	"Barrier.h"

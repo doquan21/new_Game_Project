@@ -5,14 +5,12 @@ using namespace std;
 
 void Player::renderPlayer(SDL_Renderer* renderer,string file_path)
 {
-    SDL_Texture* player = load_image(file_path.c_str(),renderer);
     SDL_Rect player_rect;
     player_rect.x = x;
     player_rect.y = y;
     player_rect.w = 45;
     player_rect.h = 85;
-    SDL_RenderCopy(renderer , player, NULL, &player_rect);
-    SDL_DestroyTexture(player);
+    render_image(file_path.c_str(), renderer,player_rect);
 }
 
 void Player::inside()

@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
             if ( SDL_WaitEvent(&event) != 0 )
             {
                 if (event.type == SDL_QUIT) {is_run = false; playAgain = false;}
-                if (event.type == SDL_KEYDOWN) playAgain = false;
+                if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN) playAgain = false;
             }
         }
         tempNameBG++;

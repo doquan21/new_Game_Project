@@ -7,7 +7,7 @@ void waitUntilKeyPressed()
 {
     SDL_Event event;
     while (true) {
-        if ( SDL_WaitEvent(&event) != 0 && ((event.type == SDL_KEYDOWN) ||(event.type == SDL_QUIT)) )
+        if ( SDL_WaitEvent(&event) != 0 && ((event.type == SDL_QUIT) ||(event.type == SDL_KEYDOWN )) )
             return;
         SDL_Delay(10);
 
@@ -28,12 +28,11 @@ SDL_Texture* load_image(string file_path,SDL_Renderer* renderer)
     return tex;
 }
 
-void render_image(string file_path,SDL_Renderer* renderer)
+void render_image(string file_path,SDL_Renderer* renderer,SDL_Rect rect)
 {
     SDL_Texture* tex = NULL;
     tex = load_image(file_path.c_str() ,renderer);
-    SDL_RenderCopy(renderer , tex, NULL, NULL);
-    SDL_RenderPresent(renderer);
+    SDL_RenderCopy(renderer , tex, NULL, &rect);
     SDL_DestroyTexture(tex);
 
 }

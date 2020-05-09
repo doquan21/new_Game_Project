@@ -8,14 +8,12 @@ void Barrier::renderBarrier(SDL_Renderer* renderer)
     string nameBarrier[5] = {"image/Barrier_1.png", "image/Barrier_2.png" ,"image/Barrier_3.png"
     , "image/Barrier_4.png", "image/Barrier_5.png"};
 
-    SDL_Texture* block = load_image(nameBarrier[posNameBarrier],renderer);
     SDL_Rect block_rect;
     block_rect.x = x;
     block_rect.y = y;
     block_rect.w = 80;
     block_rect.h = 30;
-    SDL_RenderCopy(renderer , block, NULL, &block_rect);
-    SDL_DestroyTexture(block);
+    render_image(nameBarrier[posNameBarrier],renderer,block_rect);
 }
 
 void Barrier::move1(int countScore)
