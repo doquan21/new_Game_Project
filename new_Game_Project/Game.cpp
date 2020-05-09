@@ -3,10 +3,62 @@
 void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
 {
     SDL_Rect fullscreen_rect = {0,0,500,800};
+
+    //tao cac bien event, music, chunk
+    SDL_Event event;
+    Mix_Chunk *crash_sound_effect = Mix_LoadWAV("music/Car Crash.mp3");
+    Mix_Chunk *speedup_sound_effect = Mix_LoadWAV("music/Speedup.mp3");
+    Mix_Chunk *coinCollect_sound_effect = Mix_LoadWAV("music/Coin collect.mp3");
+    Mix_Chunk *rain_sound_effect = Mix_LoadWAV("music/Rain.mp3");
+    Mix_Music *bg_music = Mix_LoadMUS("music/BGmusic.mp3");
+    Mix_PlayMusic(bg_music,-1);
+
+    // tao background
+    SDL_Rect background_rect;
+    background_rect.x = 0;
+    background_rect.y = -3200;
+    background_rect.h = 4000;
+    background_rect.w = 500;
+
+
+    // tao nhan vat
+    Player mainPlayer(125,650);
+    string nameFilePlayer = "image/Player.png";
+
+    // tao rao chan
+    Barrier barrier1(10,0);
+    Barrier barrier2(110,0);
+
+    // tao coin
+    SDL_Rect coin_rect = {0,-100,50,60};
+
+    // tao font score
+    TTF_Font* font = TTF_OpenFont("Roboto.ttf",50);
+
+    //tao cac bien can thiet
+    int healthPoint =0;
+    int countScore =0,count_animation =0;
+    bool running = true;
+    bool checkmenustart =true, checkspeedup =true, checkrain =true;
+    //ten cac images dung lam animation
+    string rain_animation[4] = {"image/rain1.png","image/rain2.png","image/rain3.png","image/rain4.png"};
+    string mainmenu_animation[4] = {"image/menustart1.png","image/menustart2.png","image/menustart3.png","image/menustart4.png"};
+    int temp_mainmenu_animation = 0, temp_rain_animation=0;
+
     //tao main menu start && chay menu start
-    render_image("image/start.png",renderer,fullscreen_rect); // trong header Function.h
-    SDL_RenderPresent(renderer);
-    waitUntilKeyPressed();
+    while(checkmenustart)
+    {
+        if(SDL_PollEvent(&event))
+        {
+            if (event.key.keysym.sym == SDLK_SPACE) checkmenustart = false;
+        }
+        count_animation++;
+        render_image("image/start.png",renderer,fullscreen_rect); // trong header Function.h
+        if (count_animation % 20 ==0) temp_mainmenu_animation++;
+        if (temp_mainmenu_animation ==4) temp_mainmenu_animation=0;
+        render_image(mainmenu_animation[temp_mainmenu_animation],renderer,fullscreen_rect);
+        SDL_RenderPresent(renderer);
+    }
 
     //tao man hinh howtoplay
     render_image("image/howtoplay.png",renderer,fullscreen_rect); // trong header Function.h
@@ -37,44 +89,7 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
         SDL_Delay(1000);
     }
 
-    //tao cac bien event, music, chunk
-    SDL_Event event;
-    Mix_Chunk *crash_sound_effect = Mix_LoadWAV("music/Car Crash.mp3");
-    Mix_Chunk *speedup_sound_effect = Mix_LoadWAV("music/Speedup.mp3");
-    Mix_Chunk *coinCollect_sound_effect = Mix_LoadWAV("music/Coin collect.mp3");
-    Mix_Music *bg_music = Mix_LoadMUS("music/BGmusic.mp3");
-    Mix_PlayMusic(bg_music,-1);
-
-    // tao background
-    SDL_Rect background_rect;
-    background_rect.x = 0;
-    background_rect.y = -3200;
-    background_rect.h = 4000;
-    background_rect.w = 500;
-
-
-    // tao nhan vat
-    Player mainPlayer(125,650);
-    string nameFilePlayer = "image/Player.png";
-
-    // tao rao chan
-    Barrier barrier1(10,0);
-    Barrier barrier2(110,0);
-
-    // tao coin
-    SDL_Rect coin_rect = {0,-100,50,60};
-
-    // tao font score
-    TTF_Font* font = TTF_OpenFont("Roboto.ttf",50);
-
-    int healthPoint =0;
-    int countScore =0;
-    int count_rain_animation =0;
-    bool running = true;
-    bool checkspeedup =true;
-    string rain_animation[4] = {"image/rain1.png","image/rain2.png","image/rain3.png","image/rain4.png"};
-    int temp_rain_animation=0;
-
+    //vong while chinh chay game
     while (running)
     {   int random = rand()%3;
         //chay background
@@ -138,11 +153,13 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
         // chay rain animation
         if (countScore > 10000 && countScore < 30000)
         {
-        count_rain_animation++;
-        if (count_rain_animation % 30 ==0) temp_rain_animation++;
-        if (temp_rain_animation ==4) temp_rain_animation=0;
-        render_image(rain_animation[temp_rain_animation],renderer,fullscreen_rect);
+            if (checkrain) {Mix_PlayChannel(-1,rain_sound_effect,0); checkrain = false;}
+            count_animation++;
+            if (count_animation % 30 ==0) temp_rain_animation++;
+            if (temp_rain_animation ==4) temp_rain_animation=0;
+            render_image(rain_animation[temp_rain_animation],renderer,fullscreen_rect);
         }
+        if (countScore > 30000) Mix_FreeChunk(rain_sound_effect);
 
         //kiem tra va cham
         if (barrier1.checkCollision(mainPlayer) ) {healthPoint++; Mix_PlayChannel(-1,crash_sound_effect,0);}
@@ -182,6 +199,8 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
     Mix_HaltMusic();
     Mix_FreeChunk(crash_sound_effect);
     Mix_FreeChunk(speedup_sound_effect);
+    Mix_FreeChunk(rain_sound_effect);
+    Mix_FreeChunk(coinCollect_sound_effect);
     Mix_FreeMusic(bg_music);
 
 
