@@ -12,6 +12,7 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
     Mix_Chunk *rain_sound_effect = Mix_LoadWAV("music/Rain.mp3");
     Mix_Music *bg_music = Mix_LoadMUS("music/BGmusic.mp3");
     Mix_PlayMusic(bg_music,-1);
+    Mix_VolumeMusic(90);
 
     // tao background
     SDL_Rect background_rect;
@@ -39,31 +40,36 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
     int healthPoint =0;
     int countScore =0,count_animation =0;
     bool running = true;
-    bool checkmenustart =true, checkspeedup =true, checkrain =true;
+    bool checkMenustart =true, checkHowtoplay =true,checkmusicBG =true, checkspeedup =true, checkrain =true;
     //ten cac images dung lam animation
     string rain_animation[4] = {"image/rain1.png","image/rain2.png","image/rain3.png","image/rain4.png"};
     string mainmenu_animation[4] = {"image/menustart1.png","image/menustart2.png","image/menustart3.png","image/menustart4.png"};
     int temp_mainmenu_animation = 0, temp_rain_animation=0;
 
     //tao main menu start && chay menu start
-    while(checkmenustart)
+    while(checkMenustart)
     {
-        if(SDL_PollEvent(&event))
-        {
-            if (event.key.keysym.sym == SDLK_SPACE) checkmenustart = false;
-        }
         count_animation++;
         render_image("image/start.png",renderer,fullscreen_rect); // trong header Function.h
         if (count_animation % 20 ==0) temp_mainmenu_animation++;
         if (temp_mainmenu_animation ==4) temp_mainmenu_animation=0;
         render_image(mainmenu_animation[temp_mainmenu_animation],renderer,fullscreen_rect);
+
+        pollEvent(checkMenustart,checkmusicBG);
+        renderSoundButton(checkmusicBG,renderer);
         SDL_RenderPresent(renderer);
     }
 
     //tao man hinh howtoplay
-    render_image("image/howtoplay.png",renderer,fullscreen_rect); // trong header Function.h
-    SDL_RenderPresent(renderer);
-    waitUntilKeyPressed();
+    while (checkHowtoplay)
+    {
+        render_image("image/howtoplay.png",renderer,fullscreen_rect); // trong header Function.h
+
+        pollEvent(checkHowtoplay,checkmusicBG);
+        renderSoundButton(checkmusicBG,renderer);
+        SDL_RenderPresent(renderer);
+
+    }
 
     //tao menu dung 3s
     if (tempNameBG%2 ==0){
@@ -91,7 +97,8 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
 
     //vong while chinh chay game
     while (running)
-    {   int random = rand()%3;
+    {
+        int random = rand()%3;
         //chay background
         if (tempNameBG%2==0) render_image("image/BG1.png",renderer,background_rect);
         else render_image("image/BG2.jpg",renderer,background_rect);
@@ -110,11 +117,13 @@ void game(SDL_Renderer* renderer, vector<int> &highscore,int tempNameBG)
         //chay mainplayer
         mainPlayer.renderPlayer(renderer, nameFilePlayer );
         mainPlayer.inside();
+
+        //poll event
         if(SDL_PollEvent(&event))
         {
-            if (event.type == SDL_QUIT) running = false;
-            mainPlayer.pollEvent(event, renderer, nameFilePlayer);
+            mainPlayer.pollEvent(event, renderer, nameFilePlayer,checkmusicBG);
         }
+        renderSoundButton(checkmusicBG,renderer);
 
         //chay coin
         render_image("image/coin.png",renderer,coin_rect);

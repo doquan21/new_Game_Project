@@ -6,10 +6,10 @@
 	"Player.h"
 	"Function.h"
 
-1588610556 d:\code big project\new_game_project\new_game_project\player.h
+1589100061 d:\code big project\new_game_project\new_game_project\player.h
 	"Function.h"
 
-1588870513 d:\code big project\new_game_project\new_game_project\function.h
+1589258757 d:\code big project\new_game_project\new_game_project\function.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -17,7 +17,7 @@
 	<string>
 	<SDl_mixer.h>
 
-1589015806 source:d:\code big project\new_game_project\new_game_project\function.cpp
+1589259278 source:d:\code big project\new_game_project\new_game_project\function.cpp
 	"Function.h"
 
 1589015482 source:d:\code big project\new_game_project\new_game_project\health.cpp
@@ -26,16 +26,16 @@
 1588740596 d:\code big project\new_game_project\new_game_project\health.h
 	"Function.h"
 
-1589015765 source:d:\code big project\new_game_project\new_game_project\main.cpp
+1589099719 source:d:\code big project\new_game_project\new_game_project\main.cpp
 	"Game.h"
 
-1589015113 source:d:\code big project\new_game_project\new_game_project\player.cpp
+1589259278 source:d:\code big project\new_game_project\new_game_project\player.cpp
 	"Player.h"
 
-1589043547 source:d:\code big project\new_game_project\new_game_project\game.cpp
+1589258987 source:d:\code big project\new_game_project\new_game_project\game.cpp
 	"Game.h"
 
-1588870649 d:\code big project\new_game_project\new_game_project\game.h
+1589100061 d:\code big project\new_game_project\new_game_project\game.h
 	"Function.h"
 	"Player.h"
 	"Barrier.h"

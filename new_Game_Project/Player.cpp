@@ -18,7 +18,7 @@ void Player::inside()
     if (x < 25) x=25;
     if (x > 225) x=225;
 }
-void Player::pollEvent(SDL_Event event,SDL_Renderer* renderer, string &nameFilePlayer)
+void Player::pollEvent(SDL_Event event,SDL_Renderer* renderer, string &nameFilePlayer,bool &checkmusicBG)
 {
     switch (event.type)
     {
@@ -30,6 +30,11 @@ void Player::pollEvent(SDL_Event event,SDL_Renderer* renderer, string &nameFileP
         {
             switch(event.key.keysym.sym)
             {
+                case SDLK_DOWN:
+                    {
+                        if (checkmusicBG == true ) {checkmusicBG = false; Mix_VolumeMusic(0); break;}
+                        else if (checkmusicBG == false ) {checkmusicBG = true; Mix_VolumeMusic(90); break;}
+                    }
                 case SDLK_LEFT:
                     {
                         if (x == 25);

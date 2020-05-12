@@ -2,15 +2,17 @@
 
 using namespace std;
 
-// line 6-> 15 copy code from lecture note
-void waitUntilKeyPressed()
+void pollEvent(bool &check, bool &checkmusicBG)
 {
     SDL_Event event;
-    while (true) {
-        if ( SDL_WaitEvent(&event) != 0 && ((event.type == SDL_QUIT) ||(event.type == SDL_KEYDOWN )) )
-            return;
-        SDL_Delay(10);
-
+    if ( SDL_PollEvent(&event))
+    {
+        if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE)) check = false;
+        if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_DOWN)
+        {
+            if (checkmusicBG == true ) {checkmusicBG = false; Mix_VolumeMusic(0);}
+            else if (checkmusicBG == false ) {checkmusicBG = true; Mix_VolumeMusic(90);}
+        }
     }
 }
 
@@ -35,6 +37,13 @@ void render_image(string file_path,SDL_Renderer* renderer,SDL_Rect rect)
     SDL_RenderCopy(renderer , tex, NULL, &rect);
     SDL_DestroyTexture(tex);
 
+}
+
+void renderSoundButton(bool &checkmusicBG, SDL_Renderer* renderer)
+{
+    SDL_Rect sound_rect = {0,0,50,50};
+    if (checkmusicBG == true) render_image("image/unmute.png",renderer,sound_rect);
+    if (checkmusicBG == false) render_image("image/mute.png",renderer,sound_rect);
 }
 
 void showScore(TTF_Font* font, SDL_Renderer* render,string score, long long int highestScore)
